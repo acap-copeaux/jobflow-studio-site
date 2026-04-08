@@ -7,8 +7,26 @@
   <link rel="stylesheet" href="./assets/css/main.css" />
 </head>
 <body>
+  <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">☰</button>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <p class="eyebrow">Navigation</p>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Fermer le menu">→</button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#hero">Accueil</a>
+      <a href="#benefits">Bénéfices</a>
+      <a href="#for">Public visé</a>
+      <a href="#flow">Fonctionnement</a>
+      <a href="#cta">Positionnement</a>
+    </nav>
+  </aside>
+
+  <div class="overlay" id="overlay"></div>
+
   <main class="shell">
-    <header class="hero hero-grid">
+    <header class="hero hero-grid" id="hero">
       <div>
         <p class="eyebrow">Structured Job Search System</p>
         <h1>Jobflow Studio</h1>
@@ -59,7 +77,7 @@
       <div class="grid">
         <article class="card">
           <h3>Profils déjà actifs</h3>
-          <p>Personnes ayant déjà une base de documents, mais manquant d’un système clair pour les faire évoluer.</p>
+          <p>Personnes ayant déjà une base de documents mais manquant d’un système clair pour les faire évoluer.</p>
         </article>
         <article class="card">
           <h3>Profils en repositionnement</h3>
@@ -72,7 +90,7 @@
       </div>
     </section>
 
-    <section class="section section-alt">
+    <section id="flow" class="section section-alt">
       <div class="section-head">
         <p class="eyebrow">Fonctionnement</p>
         <h2>Un flux simple et évolutif</h2>
@@ -96,11 +114,11 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="cta">
       <div class="cta card cta-card">
         <div>
           <p class="eyebrow">Base actuelle</p>
-          <h2>Le site vitrine est en construction, mais la direction produit est désormais claire.</h2>
+          <h2>Le site vitrine progresse vers une structure plus claire, plus lisible et plus crédible.</h2>
         </div>
         <a class="btn btn-primary" href="./legal/privacy.html">Voir les pages légales</a>
       </div>
