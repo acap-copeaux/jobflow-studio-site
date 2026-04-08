@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jobflow Studio App</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <button id="menuToggle" class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-head">
+      <strong>Jobflow Studio</strong>
+      <button id="sidebarClose" class="sidebar-close" aria-label="Fermer le menu">→</button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#workspace">Workspace</a>
+      <a href="#analysis">Analyse</a>
+      <a href="#outputs">Sorties</a>
+      <a href="#preview">Aperçu</a>
+    </nav>
+  </aside>
+  <div id="overlay" class="overlay"></div>
+  <button id="toTopBtn" class="to-top" aria-label="Remonter en haut">↑</button>
+
+  <main class="app-shell">
+    <header class="topbar" id="workspace">
+      <div>
+        <p class="eyebrow">Deployable App</p>
+        <h1>Jobflow Studio App</h1>
+        <p class="lead">Version centrale autonome déployable sur le site, orientée test réel plutôt que simple vitrine.</p>
+      </div>
+    </header>
+
+    <section class="grid three-cols">
+      <article class="panel">
+        <h2>Projet</h2>
+        <div class="field"><label for="projectPicker">Projet sauvegardé</label><select id="projectPicker"></select></div>
+        <div class="field"><label for="projectName">Projet</label><input id="projectName" type="text" /></div>
+        <div class="field"><label for="companyName">Entreprise</label><input id="companyName" type="text" /></div>
+        <div class="field"><label for="targetText">Cible / contexte</label><textarea id="targetText" rows="6"></textarea></div>
+        <div class="actions-row"><button id="saveProjectBtn">Enregistrer</button><button id="deleteProjectBtn" class="ghost">Supprimer</button></div>
+      </article>
+
+      <article class="panel">
+        <h2>Identité</h2>
+        <div class="field"><label for="fullName">Nom / prénom</label><input id="fullName" type="text" /></div>
+        <div class="field"><label for="phone">Téléphone</label><input id="phone" type="text" /></div>
+        <div class="field"><label for="email">Email</label><input id="email" type="text" /></div>
+        <div class="field"><label for="address">Adresse</label><textarea id="address" rows="4"></textarea></div>
+      </article>
+
+      <article class="panel">
+        <h2>Destinataire</h2>
+        <div class="field"><label for="recipientName">Nom du destinataire</label><input id="recipientName" type="text" /></div>
+        <div class="field"><label for="recipientCompany">Entreprise</label><input id="recipientCompany" type="text" /></div>
+        <div class="field"><label for="recipientAddress">Adresse</label><textarea id="recipientAddress" rows="4"></textarea></div>
+      </article>
+    </section>
+
+    <section class="grid two-cols">
+      <article class="panel">
+        <h2>Document</h2>
+        <div class="field"><label for="docType">Type</label><select id="docType"><option value="cv">CV</option><option value="letter">Lettre</option><option value="email">Email</option><option value="call">Script téléphonique</option><option value="interview">Préparation entretien</option></select></div>
+        <div class="field"><label for="renderStyle">Rendu</label><select id="renderStyle"><option value="sobriety">Sobre</option><option value="formal">Formel</option><option value="clear">Clair</option><option value="direct">Direct</option></select></div>
+        <div class="field"><label for="sourceFile">Fichier</label><input id="sourceFile" type="file" accept=".txt,.csv,.json,.pdf,.docx,.doc,.xlsx,.xls,.ods,.odt" /></div>
+        <div class="field"><label for="sourceText">Texte source</label><textarea id="sourceText" rows="10"></textarea></div>
+        <div class="field"><label for="fileInfo">Infos extraction</label><div id="fileInfo" class="output-block small">Aucun fichier chargé.</div></div>
+        <div class="actions-row"><button id="analyzeBtn">Analyser</button><button id="generateBtn">Générer</button><button id="buildPreviewBtn" class="ghost">Aperçu</button><button id="saveStateBtn" class="ghost">Sauvegarde rapide</button></div>
+      </article>
+
+      <article class="panel" id="analysis">
+        <h2>Analyse locale</h2>
+        <div class="stats-grid">
+          <div class="mini-stat"><span>Longueur</span><strong id="statLength">0</strong></div>
+          <div class="mini-stat"><span>Mots</span><strong id="statWords">0</strong></div>
+          <div class="mini-stat"><span>Phrases</span><strong id="statSentences">0</strong></div>
+          <div class="mini-stat"><span>Score</span><strong id="statScore">0</strong></div>
+          <div class="mini-stat"><span>Overlap</span><strong id="statOverlap">0</strong></div>
+        </div>
+        <div id="analysisOutput" class="output-block">Aucune analyse pour le moment.</div>
+        <div id="decisionOutput" class="output-block">Aucune synthèse pour le moment.</div>
+      </article>
+    </section>
+
+    <section id="outputs" class="panel">
+      <h2>Sorties</h2>
+      <div class="output-stack">
+        <div><div class="output-head"><h3>Version A</h3><div class="actions-row"><button data-copy="outputA" class="ghost mini">Copier</button><button data-download="outputA" class="ghost mini">Exporter txt</button></div></div><textarea id="outputA" rows="6"></textarea></div>
+        <div><div class="output-head"><h3>Version B</h3><div class="actions-row"><button data-copy="outputB" class="ghost mini">Copier</button><button data-download="outputB" class="ghost mini">Exporter txt</button></div></div><textarea id="outputB" rows="6"></textarea></div>
+        <div><div class="output-head"><h3>Version C</h3><div class="actions-row"><button data-copy="outputC" class="ghost mini">Copier</button><button data-download="outputC" class="ghost mini">Exporter txt</button></div></div><textarea id="outputC" rows="6"></textarea></div>
+      </div>
+    </section>
+
+    <section id="preview" class="panel">
+      <h2>Aperçu visuel</h2>
+      <div class="actions-row"><button id="copyPreviewBtn">Copier l’aperçu</button><button id="downloadHtmlBtn" class="ghost">Exporter HTML</button></div>
+      <div id="previewCard" class="preview-card"><div class="preview-empty">Aucun document généré pour le moment.</div></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
